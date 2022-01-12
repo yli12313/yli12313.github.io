@@ -29,6 +29,12 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;}
 
+/* This is a change I made. */
+figure {
+    margin: 0;
+    font-size: 1.25rem;
+}
+
 body {
 	line-height: 1;
 }
