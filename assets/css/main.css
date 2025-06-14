@@ -8607,3 +8607,20 @@ input, select, textarea {
 			#wrapper.divided > .invert:first-child {
 				box-shadow: none !important;
 			}
+	
+/* Fix banner image cropping on mobile */
+@media screen and (max-width: 736px) {
+  .banner.style1 .image img {
+    object-fit: contain !important;
+    object-position: top center !important;
+    position: relative !important;
+    height: auto !important;
+    max-height: 55vh !important;
+    width: 100% !important;
+    background: #fff; /* optional: fill background if image doesn't cover */
+  }
+  .banner.style1 .image {
+    height: auto !important;
+    min-height: unset !important;
+  }
+}
