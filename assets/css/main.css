@@ -6862,6 +6862,14 @@ input, select, textarea {
 			width: 100%;
 		}
 
+		@media screen and (max-width: 736px) {
+
+			.gallery.style2 > .inner {
+				overscroll-behavior-x: contain;
+			}
+
+		}
+
 		.gallery.style2 article {
 			-moz-flex-grow: 0;
 			-webkit-flex-grow: 0;
