@@ -6865,7 +6865,12 @@ input, select, textarea {
 		@media screen and (max-width: 736px) {
 
 			.gallery.style2 > .inner {
-				overscroll-behavior-x: contain;
+				overscroll-behavior-x: none;
+				-webkit-overflow-scrolling: auto;
+			}
+
+			.gallery.style2 {
+				-webkit-overflow-scrolling: auto;
 			}
 
 		}

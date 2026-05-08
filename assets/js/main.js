@@ -180,10 +180,21 @@
 				//.css('overflow', 'hidden')
 				.css('overflow-y', browser.mobile ? 'visible' : 'hidden')
 				.css('overflow-x', browser.mobile ? 'scroll' : 'hidden')
+				.css(browser.mobile ? { 'overscroll-behavior-x': 'none', '-webkit-overflow-scrolling': 'auto' } : {})
 				.scrollLeft(0);
 
 		// Style #1.
 			// ...
+
+		// Mobile: hard-clamp scroll at boundaries.
+			if (browser.mobile) {
+				$('.gallery').on('scroll', '.inner', function() {
+					var el = this;
+					var max = el.scrollWidth - el.clientWidth;
+					if (el.scrollLeft < 0) el.scrollLeft = 0;
+					if (el.scrollLeft > max) el.scrollLeft = max;
+				});
+			}
 
 		// Style #2.
 			$('.gallery')
