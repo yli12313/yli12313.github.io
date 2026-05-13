@@ -6860,6 +6860,7 @@ input, select, textarea {
 			overflow-y: hidden;
 			position: relative;
 			width: 100%;
+			overscroll-behavior-x: none;
 		}
 
 		.gallery.style2 article {
