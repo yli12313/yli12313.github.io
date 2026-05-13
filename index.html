@@ -6,18 +6,6 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="assets/css/main.css" />
-	<style>
-		@media screen and (max-width: 480px) {
-			.gallery.style2 .inner {
-				flex-wrap: wrap !important;
-				overflow-x: hidden !important;
-			}
-			.gallery.style2 article {
-				width: 50% !important;
-				max-width: 50% !important;
-			}
-		}
-	</style>
 	<noscript>
 		<link rel="stylesheet" href="assets/css/noscript.css" />
 	</noscript>
@@ -230,6 +218,16 @@
 	<script src="assets/js/breakpoints.min.js"></script>
 	<script src="assets/js/util.js"></script>
 	<script src="assets/js/main.js"></script>
+	<script>
+		window.addEventListener('load', function() {
+			var el = document.querySelector('.gallery.style2 .inner');
+			if (!el) return;
+			el.addEventListener('touchmove', function(e) {
+				if (el.scrollLeft <= 0 || el.scrollLeft >= el.scrollWidth - el.clientWidth)
+					e.preventDefault();
+			}, { passive: false });
+		});
+	</script>
 
 </body>
 
