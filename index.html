@@ -6,6 +6,90 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="assets/css/main.css" />
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800;900&display=swap"
+		rel="stylesheet" />
+	<style>
+		.epic-quote {
+			font-family: 'Cinzel', serif;
+			font-weight: 900;
+			font-size: 3em;
+			line-height: 1.2;
+			margin: 2rem 0 2rem 0;
+			letter-spacing: 0.05em;
+			text-transform: uppercase;
+			white-space: nowrap;
+			background: linear-gradient(90deg, #ff4b1f, #ff9068, #f6d365, #43e97b, #38f9d7, #4facfe, #a18cd1, #ff4b1f);
+			background-size: 300% 100%;
+			-webkit-background-clip: text;
+			background-clip: text;
+			-webkit-text-fill-color: transparent;
+			color: transparent;
+			transform-origin: left center;
+			transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+			animation:
+				quote-flow 8s linear infinite,
+				quote-pulse 4.5s ease-in-out infinite,
+				quote-flicker 2s ease-out 1 both;
+		}
+
+		.epic-quote:hover {
+			transform: scale(1.025);
+		}
+
+		@keyframes quote-flow {
+			0% {
+				background-position: 0% 50%;
+			}
+
+			100% {
+				background-position: 300% 50%;
+			}
+		}
+
+		@keyframes quote-flicker {
+			0% { opacity: 0; }
+			8% { opacity: 0; }
+			9% { opacity: 0.9; }
+			10% { opacity: 0.1; }
+			13% { opacity: 0.9; }
+			14% { opacity: 0.2; }
+			17% { opacity: 1; }
+			19% { opacity: 0.3; }
+			21% { opacity: 1; }
+			24% { opacity: 0.15; }
+			27% { opacity: 1; }
+			35% { opacity: 0.6; }
+			36% { opacity: 1; }
+			45% { opacity: 0.9; }
+			47% { opacity: 1; }
+			100% { opacity: 1; }
+		}
+
+		@keyframes quote-pulse {
+
+			0%,
+			100% {
+				filter: drop-shadow(0 0 8px rgba(255, 75, 31, 0.25)) drop-shadow(0 0 2px rgba(255, 255, 255, 0.15));
+			}
+
+			50% {
+				filter: drop-shadow(0 0 24px rgba(120, 170, 255, 0.55)) drop-shadow(0 0 6px rgba(255, 120, 200, 0.35));
+			}
+		}
+
+		@media (prefers-reduced-motion: reduce) {
+			.epic-quote {
+				animation: none;
+				filter: drop-shadow(0 0 10px rgba(255, 75, 31, 0.25));
+			}
+
+			.epic-quote:hover {
+				transform: none;
+			}
+		}
+	</style>
 	<noscript>
 		<link rel="stylesheet" href="assets/css/noscript.css" />
 	</noscript>
@@ -23,9 +107,7 @@
 			<div class="content">
 				<!-- <embed name="openingsong" src="audio/Disfigure_Blank.mp3" autostart="false" hidden="false" loop="true" width="300" height="100"></embed> -->
 				<h1>Yingquan Li</h1>
-				<p class="major">"Life is one [<em>expletive</em>] beauty contest after another. You know school, then
-					college, then work? Forget that! You do what you love and forget the rest." - Dwayne Hoover and
-					Uncle Frank, Little Miss Sunshine</p>
+				<p class="major epic-quote">Nosce Te Ipsum (L.)<br>"Know Thyself."<br>&mdash; Greek Proverb</p>
 
 				<figure>
 					<figcaption>Cue the music:</figcaption>
@@ -238,6 +320,31 @@
 	<script src="assets/js/breakpoints.min.js"></script>
 	<script src="assets/js/util.js"></script>
 	<script src="assets/js/main.js"></script>
+	<script>
+		// Scale the epic quote to be as large as possible without clipping the widest line.
+		(function() {
+			function fitQuote() {
+				var el = document.querySelector('.epic-quote');
+				if (!el) return;
+				el.style.fontSize = '';
+				var needed = el.scrollWidth;
+				if (!needed) return;
+				// Grow the quote to fill the empty space up to the photo's left edge.
+				var img = document.querySelector('.banner .image');
+				var elLeft = el.getBoundingClientRect().left;
+				var rightBound = img ? img.getBoundingClientRect().left : window.innerWidth;
+				var gap = 20; // breathing room before the picture
+				var avail = rightBound - elLeft - gap;
+				if (avail <= 0) avail = el.clientWidth; // stacked/portrait fallback
+				var base = parseFloat(getComputedStyle(el).fontSize);
+				el.style.fontSize = (base * (avail / needed)) + 'px';
+			}
+			window.addEventListener('load', fitQuote);
+			window.addEventListener('resize', fitQuote);
+			if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitQuote);
+		})();
+	</script>
+
 	<script>
 		window.addEventListener('load', function() {
 			var el = document.querySelector('.gallery.style2 .inner');
