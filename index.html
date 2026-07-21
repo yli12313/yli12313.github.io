@@ -20,7 +20,7 @@
 			letter-spacing: 0.05em;
 			text-transform: uppercase;
 			white-space: nowrap;
-			background: linear-gradient(90deg, #ff4b1f, #ff9068, #f6d365, #43e97b, #38f9d7, #4facfe, #a18cd1, #ff4b1f);
+			background: linear-gradient(90deg, #ff2d55, #ff6a00, #e39400, #00a14b, #009e8e, #0091ff, #5b2bff, #b100e8, #ff007a, #ff2d55);
 			background-size: 300% 100%;
 			-webkit-background-clip: text;
 			background-clip: text;
@@ -71,18 +71,22 @@
 
 			0%,
 			100% {
-				filter: drop-shadow(0 0 8px rgba(255, 75, 31, 0.25)) drop-shadow(0 0 2px rgba(255, 255, 255, 0.15));
+				filter: drop-shadow(0 0 10px rgba(255, 45, 85, 0.55)) drop-shadow(0 0 2px rgba(255, 0, 122, 0.30));
 			}
 
-			50% {
-				filter: drop-shadow(0 0 24px rgba(120, 170, 255, 0.55)) drop-shadow(0 0 6px rgba(255, 120, 200, 0.35));
+			33% {
+				filter: drop-shadow(0 0 22px rgba(0, 161, 75, 0.60)) drop-shadow(0 0 5px rgba(227, 148, 0, 0.35));
+			}
+
+			66% {
+				filter: drop-shadow(0 0 22px rgba(0, 145, 255, 0.60)) drop-shadow(0 0 5px rgba(177, 0, 232, 0.35));
 			}
 		}
 
 		@media (prefers-reduced-motion: reduce) {
 			.epic-quote {
 				animation: none;
-				filter: drop-shadow(0 0 10px rgba(255, 75, 31, 0.25));
+				filter: drop-shadow(0 0 10px rgba(255, 45, 85, 0.40));
 			}
 
 			.epic-quote:hover {
